@@ -1,0 +1,1037 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Hallazgos del rastreo contractual del sismo del 10 de agosto de 2026: vacios de reporte, concentracion de contratistas y trazabilidad por municipio.">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Informe: contratacion por el sismo del 10 de agosto de 2026">
+<meta property="og:description" content="Hallazgos del rastreo contractual del sismo del 10 de agosto de 2026: vacios de reporte, concentracion de contratistas y trazabilidad por municipio.">
+<meta property="og:locale" content="es_CO">
+<title>Informe de rastreo contractual · Sismo del 10 de agosto de 2026</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{color-scheme:light dark}
+  *{box-sizing:border-box}
+  body{margin:0}
+  img{max-width:100%}
+  [hidden]{display:none!important}
+  /* barra de navegacion del sitio */
+  .sitenav{
+    display:flex; flex-wrap:wrap; gap:2px 18px; align-items:baseline;
+    padding:9px 20px; border-bottom:1px solid var(--rule,#D9D9D2);
+    background:var(--surface-2,#F1F1ED);
+    font-family:"Archivo",system-ui,sans-serif; font-size:12.5px;
+  }
+  .sitenav a{
+    color:var(--muted,#666E74); text-decoration:none; padding:2px 0;
+    border-bottom:2px solid transparent;
+  }
+  .sitenav a:hover{color:var(--ink,#15181B)}
+  .sitenav a[aria-current="page"]{color:var(--ink,#15181B); font-weight:600; border-bottom-color:var(--accent,#24485C)}
+  .sitenav .sep{color:var(--rule-strong,#B9BAB1)}
+  .sitenav .src{margin-left:auto; color:var(--muted,#666E74); font-family:"IBM Plex Mono",monospace; font-size:11px}
+</style>
+</head>
+<body>
+<nav class="sitenav" aria-label="Secciones">
+  <a href="./">Tablero</a>
+  <span class="sep">/</span>
+  <a href="./informe.html" aria-current="page">Informe</a>
+  <span class="src">Sismo 10 ago 2026 &middot; SECOP I + II &middot; corte 8 sep 2026</span>
+</nav>
+<style>
+  :root{
+    --paper:#F7F7F4; --surface:#FFFFFF; --surface-2:#F1F1ED;
+    --ink:#15181B; --ink-2:#3D454A; --muted:#666E74;
+    --rule:#D9D9D2; --rule-strong:#B9BAB1;
+    --accent:#24485C; --accent-soft:#E4ECF1;
+    --signal:#B23A1E; --signal-soft:#F6E5DF;
+    --ok:#1D6B54; --ok-soft:#E2EFE9;
+    --warn:#8A6212; --warn-soft:#F5EEDC;
+    --neutral:#5D6B78; --neutral-soft:#E9ECEF;
+    --shadow:0 1px 2px rgba(21,24,27,.06), 0 8px 24px -18px rgba(21,24,27,.35);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#131619; --surface:#1B1F22; --surface-2:#232830;
+      --ink:#E9E7E2; --ink-2:#C3C7C9; --muted:#98A0A6;
+      --rule:#2E343A; --rule-strong:#454D54;
+      --accent:#7BB0CB; --accent-soft:#1E2E38;
+      --signal:#E47954; --signal-soft:#37231D;
+      --ok:#5CBD9A; --ok-soft:#172C26;
+      --warn:#DAAB48; --warn-soft:#2E2617;
+      --neutral:#93A1AE; --neutral-soft:#232A30;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -20px rgba(0,0,0,.8);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#131619; --surface:#1B1F22; --surface-2:#232830;
+    --ink:#E9E7E2; --ink-2:#C3C7C9; --muted:#98A0A6;
+    --rule:#2E343A; --rule-strong:#454D54;
+    --accent:#7BB0CB; --accent-soft:#1E2E38;
+    --signal:#E47954; --signal-soft:#37231D;
+    --ok:#5CBD9A; --ok-soft:#172C26;
+    --warn:#DAAB48; --warn-soft:#2E2617;
+    --neutral:#93A1AE; --neutral-soft:#232A30;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -20px rgba(0,0,0,.8);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:"Source Serif 4",Georgia,"Times New Roman",serif;
+    font-size:16.5px; line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1120px; margin:0 auto; padding:0 24px 96px}
+
+  /* ---------- header ---------- */
+  header.masthead{
+    border-bottom:2px solid var(--ink);
+    padding:40px 0 18px; margin-bottom:0;
+    display:flex; flex-direction:column; gap:18px;
+  }
+  .eyebrow{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:11.5px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--muted); display:flex; flex-wrap:wrap; gap:6px 18px;
+  }
+  .eyebrow b{color:var(--accent); font-weight:600}
+  h1{
+    font-family:"Archivo",system-ui,sans-serif; font-weight:700;
+    font-size:clamp(2rem,4.6vw,3.1rem); line-height:1.02;
+    letter-spacing:-.022em; margin:0; text-wrap:balance; color:var(--ink);
+  }
+  .standfirst{
+    font-size:1.09rem; color:var(--ink-2); max-width:64ch; margin:0;
+  }
+  .trace{display:block; width:100%; height:34px; opacity:.9}
+
+  /* ---------- figures band ---------- */
+  .band{
+    display:grid; grid-template-columns:repeat(4,1fr);
+    border-bottom:1px solid var(--rule); margin-bottom:44px;
+  }
+  .band > div{
+    padding:22px 20px 22px 0; border-right:1px solid var(--rule);
+  }
+  .band > div:last-child{border-right:none; padding-right:0}
+  .band > div + div{padding-left:20px}
+  .fig{
+    font-family:"IBM Plex Mono",monospace; font-weight:500;
+    font-size:clamp(1.35rem,2.5vw,1.85rem); line-height:1.1;
+    letter-spacing:-.02em; font-variant-numeric:tabular-nums;
+    color:var(--ink); display:block;
+  }
+  .fig .u{font-size:.62em; color:var(--muted); letter-spacing:0}
+  .figlabel{
+    font-family:"Archivo",sans-serif; font-size:12.5px; font-weight:500;
+    letter-spacing:.04em; text-transform:uppercase; color:var(--muted);
+    margin-top:8px; display:block; line-height:1.35;
+  }
+
+  /* ---------- sections ---------- */
+  section{margin-bottom:56px}
+  h2{
+    font-family:"Archivo",sans-serif; font-weight:600;
+    font-size:1.45rem; letter-spacing:-.012em; line-height:1.15;
+    margin:0 0 6px; text-wrap:balance;
+    padding-bottom:8px; border-bottom:1px solid var(--rule-strong);
+    display:flex; align-items:baseline; gap:12px;
+  }
+  h2 .n{
+    font-family:"IBM Plex Mono",monospace; font-size:.66em;
+    color:var(--accent); font-weight:500; letter-spacing:0;
+  }
+  h3{
+    font-family:"Archivo",sans-serif; font-weight:600; font-size:1.02rem;
+    letter-spacing:.005em; margin:32px 0 10px; color:var(--ink);
+  }
+  .lede{color:var(--ink-2); max-width:68ch; margin:14px 0 0}
+  p{margin:14px 0 0; max-width:70ch}
+  a{color:var(--accent); text-decoration:underline; text-underline-offset:2px; text-decoration-thickness:1px}
+  a:focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:2px}
+  code,.mono{font-family:"IBM Plex Mono",monospace; font-size:.87em; font-variant-numeric:tabular-nums}
+  strong{font-weight:600}
+
+  /* ---------- tier legend ---------- */
+  .tiers{display:grid; gap:0; margin-top:22px; border-top:1px solid var(--rule)}
+  .tier{
+    display:grid; grid-template-columns:132px 1fr auto;
+    gap:18px; align-items:start;
+    padding:16px 0 16px 14px; border-bottom:1px solid var(--rule);
+    border-left:3px solid var(--tc);
+  }
+  .tier--ok{--tc:var(--ok)} .tier--warn{--tc:var(--warn)} .tier--neu{--tc:var(--neutral)}
+  .tier .name{
+    font-family:"Archivo",sans-serif; font-weight:600; font-size:12.5px;
+    letter-spacing:.07em; text-transform:uppercase; color:var(--tc); padding-top:2px;
+  }
+  .tier .desc{font-size:.95rem; color:var(--ink-2); max-width:60ch}
+  .tier .cnt{
+    font-family:"IBM Plex Mono",monospace; font-size:.9rem; text-align:right;
+    color:var(--ink); font-variant-numeric:tabular-nums; white-space:nowrap; padding-top:2px;
+  }
+  .tier .cnt span{display:block; color:var(--muted); font-size:.82rem}
+
+  /* ---------- chart ---------- */
+  .chartbox{margin-top:24px; overflow-x:auto}
+  .chart{min-width:560px; width:100%; height:auto; display:block}
+  .chart text{font-family:"IBM Plex Mono",monospace; font-size:11px; fill:var(--muted)}
+  .chart text.dep{font-family:"Archivo",sans-serif; font-size:12px; fill:var(--ink-2)}
+  .chart text.val{fill:var(--ink); font-variant-numeric:tabular-nums}
+  .chart .grid{stroke:var(--rule); stroke-width:1}
+  .chart .axis{stroke:var(--rule-strong); stroke-width:1}
+
+  /* ---------- findings ---------- */
+  .finds{margin-top:8px; display:grid; gap:0}
+  .find{
+    display:grid; grid-template-columns:auto 1fr; gap:16px;
+    padding:20px 0; border-bottom:1px solid var(--rule);
+  }
+  .find:last-child{border-bottom:none}
+  .find .mark{
+    font-family:"IBM Plex Mono",monospace; font-size:12px; font-weight:600;
+    letter-spacing:.06em; text-transform:uppercase;
+    padding:3px 8px; border-radius:2px; white-space:nowrap; height:fit-content;
+    background:var(--fb); color:var(--fc); border:1px solid var(--fc);
+  }
+  .find--vacio{--fb:var(--signal-soft); --fc:var(--signal)}
+  .find--conc{--fb:var(--warn-soft); --fc:var(--warn)}
+  .find--dato{--fb:var(--accent-soft); --fc:var(--accent)}
+  .find h4{
+    font-family:"Archivo",sans-serif; font-weight:600; font-size:1.06rem;
+    margin:0 0 4px; letter-spacing:-.005em; text-wrap:balance;
+  }
+  .find p{margin:6px 0 0; font-size:.98rem; color:var(--ink-2); max-width:72ch}
+
+  /* ---------- tables ---------- */
+  .tablebox{margin-top:20px; overflow-x:auto; border:1px solid var(--rule); border-radius:3px; background:var(--surface)}
+  table{border-collapse:collapse; width:100%; min-width:720px; font-size:.9rem}
+  caption{
+    text-align:left; padding:14px 16px 12px; font-size:.86rem; color:var(--muted);
+    font-family:"Archivo",sans-serif; border-bottom:1px solid var(--rule);
+  }
+  th{
+    font-family:"Archivo",sans-serif; font-weight:600; font-size:11.5px;
+    letter-spacing:.06em; text-transform:uppercase; color:var(--muted);
+    text-align:left; padding:11px 14px; border-bottom:1px solid var(--rule-strong);
+    background:var(--surface-2); white-space:nowrap; vertical-align:bottom;
+  }
+  td{padding:12px 14px; border-bottom:1px solid var(--rule); vertical-align:top; color:var(--ink-2)}
+  tbody tr:last-child td{border-bottom:none}
+  td.num{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap; color:var(--ink)}
+  td.ref{font-family:"IBM Plex Mono",monospace; font-size:.82rem; white-space:nowrap}
+  td.obj{min-width:290px; max-width:420px; color:var(--ink)}
+  td.ent{min-width:180px; max-width:250px}
+  .pill{
+    display:inline-block; font-family:"Archivo",sans-serif; font-size:10.5px;
+    font-weight:600; letter-spacing:.06em; text-transform:uppercase;
+    padding:2px 7px; border-radius:2px; white-space:nowrap;
+  }
+  .pill--ok{background:var(--ok-soft); color:var(--ok)}
+  .pill--warn{background:var(--warn-soft); color:var(--warn)}
+  .pill--neu{background:var(--neutral-soft); color:var(--neutral)}
+
+  /* ---------- decree list ---------- */
+  .decs{margin-top:18px; border-top:1px solid var(--rule)}
+  .dec{
+    display:grid; grid-template-columns:210px 1fr; gap:20px;
+    padding:13px 0; border-bottom:1px solid var(--rule); align-items:start;
+  }
+  .dec .who{font-family:"Archivo",sans-serif; font-weight:600; font-size:.86rem; color:var(--ink)}
+  .dec .what{font-size:.94rem; color:var(--ink-2)}
+  .dec .what .mono{color:var(--ink)}
+  .flag{
+    display:inline-block; margin-left:6px; font-family:"IBM Plex Mono",monospace;
+    font-size:10px; letter-spacing:.05em; text-transform:uppercase;
+    color:var(--signal); border:1px solid var(--signal); border-radius:2px; padding:1px 5px;
+    vertical-align:1px;
+  }
+
+  /* ---------- caveats ---------- */
+  .caveats{
+    margin-top:22px; padding:22px 24px; background:var(--surface-2);
+    border-left:3px solid var(--rule-strong); border-radius:0 3px 3px 0;
+  }
+  .caveats ul{margin:0; padding-left:20px}
+  .caveats li{margin:9px 0; font-size:.95rem; color:var(--ink-2); max-width:74ch}
+  .caveats li::marker{color:var(--muted)}
+
+  footer{
+    margin-top:64px; padding-top:20px; border-top:2px solid var(--ink);
+    font-family:"IBM Plex Mono",monospace; font-size:11.5px;
+    letter-spacing:.05em; color:var(--muted);
+    display:flex; flex-wrap:wrap; gap:8px 24px; justify-content:space-between;
+  }
+
+  @media (max-width:860px){
+    .band{grid-template-columns:repeat(2,1fr)}
+    .band > div:nth-child(2){border-right:none; padding-right:0}
+    .band > div:nth-child(3){padding-left:0; border-top:1px solid var(--rule)}
+    .band > div:nth-child(4){border-top:1px solid var(--rule)}
+    .tier{grid-template-columns:1fr; gap:6px}
+    .tier .cnt{text-align:left}
+    .dec{grid-template-columns:1fr; gap:2px}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important}}
+</style>
+
+<div class="wrap">
+
+<header class="masthead">
+  <div class="eyebrow">
+    <span>Rastreo de contratación pública</span>
+    <span><b>Sismo M 7,4 &middot; 10 ago 2026</b></span>
+    <span>Epicentro San José del Palmar, Chocó</span>
+    <span>SECOP I + SECOP II</span>
+    <span>Corte de datos 8 sep 2026</span>
+  </div>
+  <h1>Contratación por el sismo del 10 de agosto</h1>
+  <p class="standfirst">
+    Trazabilidad de contratos y procesos registrados en los dos sistemas de SECOP para
+    atender las afectaciones del sismo, con el nexo causal verificado contra los decretos de
+    calamidad pública, urgencia manifiesta y emergencia económica.
+  </p>
+  <svg class="trace" viewBox="0 0 1120 34" preserveAspectRatio="none" role="img" aria-label="Traza sísmica decorativa">
+    <path d="M0 17 H300 l6 -2 l5 5 l7 -9 l6 12 l5 -22 l6 30 l7 -34 l5 33 l6 -25 l5 17 l7 -11 l6 8 l5 -5 l6 3 l7 -2 H520 l8 4 l6 -7 l7 11 l6 -14 l7 9 l6 -5 l8 3 H700 l10 2 l8 -4 l9 5 l8 -3 H1120"
+      fill="none" stroke="var(--signal)" stroke-width="1.4" stroke-linejoin="round"/>
+  </svg>
+</header>
+
+<div class="band">
+  <div>
+    <span class="fig">329</span>
+    <span class="figlabel">Contratos con nexo al sismo</span>
+  </div>
+  <div>
+    <span class="fig">91.874<span class="u"> mill. COP</span></span>
+    <span class="figlabel">Valor contratado</span>
+  </div>
+  <div>
+    <span class="fig">376</span>
+    <span class="figlabel">Procesos de contratación</span>
+  </div>
+  <div>
+    <span class="fig">235<span class="u"> / 329</span></span>
+    <span class="figlabel">Por urgencia manifiesta</span>
+  </div>
+</div>
+
+<section>
+  <h2><span class="n">01</span> Qué se buscó y cómo</h2>
+  <p class="lede">
+    Se consultaron los tres conjuntos de datos pertinentes en
+    <span class="mono">datos.gov.co</span>: de SECOP&nbsp;II, <em>Contratos Electrónicos</em>
+    (<span class="mono">jbjy-vk9h</span>) y <em>Procesos de Contratación</em>
+    (<span class="mono">p6dx-8zbt</span>); y de SECOP&nbsp;I, <em>Procesos de Compra
+    Pública</em> (<span class="mono">f789-7hwg</span>). Se barrieron todos los registros con
+    firma o publicación desde el 1&nbsp;de agosto de 2026 por dos vías complementarias: el
+    texto del objeto contractual y la causal formal de contratación directa.
+  </p>
+  <p>
+    <strong>SECOP&nbsp;I sigue en uso y no es residual:</strong> registra
+    <span class="mono">8.822</span> contratos firmados desde el 10 de agosto, frente a
+    <span class="mono">66.301</span> de SECOP&nbsp;II. Muchos municipios pequeños —entre
+    ellos San José del Palmar, el del epicentro— publican <em>solo</em> ahí, de modo que un
+    rastreo limitado a SECOP&nbsp;II los pierde por completo.
+  </p>
+  <p>
+    El barrido bruto arrojó <strong class="mono">5.524</strong> contratos y
+    <strong class="mono">5.987</strong> procesos en SECOP&nbsp;II, más
+    <strong class="mono">250</strong> registros en SECOP&nbsp;I. Sobre ese universo se aplicó
+    una depuración del nexo causal, porque la coincidencia de palabras produce muchos falsos
+    positivos: sísmica petrolera y de refracción, norma <span class="mono">NSR-10</span>
+    y «sismo resistente», monitoreo volcanológico, simulacros de evacuación, albergues de
+    fauna, sobretasa bomberil, calamidad doméstica, y urgencias manifiestas fundadas en otros
+    hechos —vendavales, temporada de lluvias, desplazamiento forzado, el régimen permanente
+    de Nasa Kiwe o el esquema de protección de la UNP—. Cada registro quedó en uno de tres
+    niveles de certeza:
+  </p>
+
+  <div class="tiers">
+    <div class="tier tier--ok">
+      <span class="name">Confirmado</span>
+      <span class="desc">
+        El objeto contractual menciona expresamente el sismo, el evento sísmico del
+        10 de agosto de 2026, o el decreto de calamidad de esa fecha.
+      </span>
+      <span class="cnt">257 contratos<span>296 procesos</span></span>
+    </div>
+    <div class="tier tier--warn">
+      <span class="name">Probable</span>
+      <span class="desc">
+        Contratación por urgencia manifiesta o calamidad pública posterior al 10 de agosto,
+        en departamento cubierto por el Decreto 1261, con objeto de respuesta a emergencia
+        pero sin cita expresa del sismo.
+      </span>
+      <span class="cnt">51 contratos<span>52 procesos</span></span>
+    </div>
+    <div class="tier tier--neu">
+      <span class="name">Por verificar</span>
+      <span class="desc">
+        Urgencia manifiesta posterior al sismo en departamento cubierto, con objeto sin
+        relación aparente. Requiere revisar el acto administrativo: la mayoría parece
+        responder a otras causas.
+      </span>
+      <span class="cnt">21 contratos<span>28 procesos</span></span>
+    </div>
+  </div>
+
+  <p>
+    El valor contratado se reparte así: <strong class="mono">61.833</strong> millones en
+    confirmados, <strong class="mono">19.072</strong> en probables y
+    <strong class="mono">10.970</strong> en los pendientes de verificación.
+  </p>
+  <p>
+    <strong>Los procesos no se suman a los contratos.</strong> En SECOP&nbsp;II el proceso y
+    el contrato que resulta de él son dos registros del mismo trámite, unidos por
+    <span class="mono">id_del_portafolio</span> = <span class="mono">proceso_de_compra</span>.
+    De los 376 procesos del rastreo, <strong class="mono">268</strong> ya figuran en la base
+    como contrato firmado: su valor base de <span class="mono">78.296</span> millones repetiría
+    dinero ya contado. Quedan <strong class="mono">108</strong> procesos sin contrato
+    registrado, por <strong class="mono">36.964</strong> millones.
+  </p>
+  <p>
+    Y «sin contrato» tampoco significa siempre «pendiente». De esos 108,
+    <strong class="mono">22</strong> son de colegios oficiales, universidades, E.S.E. y
+    empresas de servicios públicos que <strong>nunca</strong> publican contratos en
+    SECOP&nbsp;II —la fila del proceso es el único registro que habrá—.
+    Otros <strong class="mono">31</strong> están en estado «Seleccionado» o «Celebrado» sin
+    contrato publicado, lo que apunta a rezago de reporte. Los genuinamente abiertos
+    —publicados, convocados, en presentación de ofertas o en evaluación— son
+    <strong class="mono">75</strong>, por <span class="mono">20.061</span> millones.
+  </p>
+  <p>
+    Sumando sin duplicar, el compromiso identificable es de
+    <strong class="mono">91.874</strong> millones firmados más
+    <strong class="mono">36.964</strong> millones en trámite:
+    <strong class="mono">128.838</strong> millones.
+  </p>
+  <p>
+    Aparte de esos tres niveles se aisló un cuarto grupo que no es contratación pública:
+    <strong class="mono">54</strong> registros de <strong>cámaras de comercio</strong> por
+    <strong class="mono">4.125</strong> millones. Son entidades privadas que publican en
+    SECOP&nbsp;I por régimen especial; su gasto tiene nexo real con el sismo pero no
+    compromete recursos públicos, así que va en hoja separada del libro de Excel y no suma en
+    ninguna cifra de este informe.
+  </p>
+</section>
+
+<section>
+  <h2><span class="n">02</span> Dónde se está gastando</h2>
+  <p class="lede">
+    El dinero no siguió al epicentro. El Eje Cafetero concentra
+    <strong class="mono">167</strong> contratos por <strong class="mono">37.652</strong>
+    millones —41&nbsp;% del valor total—, casi tanto como el Valle del Cauca. El Chocó, donde
+    estuvo el epicentro, registra seis contratos por <span class="mono">1.557</span> millones,
+    y la mitad de ellos aparecen únicamente en SECOP&nbsp;I.
+  </p>
+  <div class="chartbox">
+    <svg class="chart" viewBox="0 0 720 430" role="img"
+      aria-label="Valor contratado por departamento, en millones de pesos: Valle del Cauca 31.954, Risaralda 19.670, Caldas 15.550, Bolívar 8.247, Antioquia 7.528, Quindío 2.432, Chocó 1.557, Bogotá D.C. 1.286, Cauca 732, Sucre 720">
+      <!-- escala: 132 px = 10.000 millones -->
+      <line class="grid" x1="188" y1="26" x2="188" y2="382"/>
+      <line class="grid" x1="320" y1="26" x2="320" y2="382"/>
+      <line class="grid" x1="452" y1="26" x2="452" y2="382"/>
+      <line class="grid" x1="584" y1="26" x2="584" y2="382"/>
+      <line class="grid" x1="716" y1="26" x2="716" y2="382"/>
+      <text x="188" y="18" text-anchor="middle">0</text>
+      <text x="320" y="18" text-anchor="middle">10.000</text>
+      <text x="452" y="18" text-anchor="middle">20.000</text>
+      <text x="584" y="18" text-anchor="middle">30.000</text>
+      <text x="700" y="18" text-anchor="middle">mill. COP</text>
+      <line class="axis" x1="188" y1="382" x2="716" y2="382"/>
+
+      <!-- Valle 31954 -> 421.8 -->
+      <text class="dep" x="180" y="42" text-anchor="end">Valle del Cauca</text>
+      <rect x="188" y="30" width="421.8" height="17" fill="var(--accent)"/>
+      <text class="val" x="617.8" y="42">31.954</text>
+      <!-- Risaralda 19670 -> 259.6 -->
+      <text class="dep" x="180" y="77" text-anchor="end">Risaralda</text>
+      <rect x="188" y="65" width="259.6" height="17" fill="var(--accent)"/>
+      <text class="val" x="455.6" y="77">19.670</text>
+      <!-- Caldas 15550 -> 205.3 -->
+      <text class="dep" x="180" y="112" text-anchor="end">Caldas</text>
+      <rect x="188" y="100" width="205.3" height="17" fill="var(--accent)"/>
+      <text class="val" x="401.3" y="112">15.550</text>
+      <!-- Bolívar 8247 -> 108.9 -->
+      <text class="dep" x="180" y="147" text-anchor="end">Bolívar</text>
+      <rect x="188" y="135" width="108.9" height="17" fill="var(--neutral)"/>
+      <text class="val" x="304.9" y="147">8.247</text>
+      <!-- Antioquia 7528 -> 99.4 -->
+      <text class="dep" x="180" y="182" text-anchor="end">Antioquia</text>
+      <rect x="188" y="170" width="99.4" height="17" fill="var(--accent)"/>
+      <text class="val" x="295.4" y="182">7.528</text>
+      <!-- Quindío 2432 -> 32.1 -->
+      <text class="dep" x="180" y="217" text-anchor="end">Quindío</text>
+      <rect x="188" y="205" width="32.1" height="17" fill="var(--accent)"/>
+      <text class="val" x="228.1" y="217">2.432</text>
+      <!-- Chocó 1557 -> 20.6 -->
+      <text class="dep" x="180" y="252" text-anchor="end">Chocó (epicentro)</text>
+      <rect x="188" y="240" width="20.6" height="17" fill="var(--signal)"/>
+      <text class="val" x="216.6" y="252">1.557</text>
+      <!-- Bogotá 1286 -> 17.0 -->
+      <text class="dep" x="180" y="287" text-anchor="end">Bogotá D.C.</text>
+      <rect x="188" y="275" width="17.0" height="17" fill="var(--neutral)"/>
+      <text class="val" x="213.0" y="287">1.286</text>
+      <!-- Cauca 732 -> 9.7 -->
+      <text class="dep" x="180" y="322" text-anchor="end">Cauca</text>
+      <rect x="188" y="310" width="9.7" height="17" fill="var(--accent)"/>
+      <text class="val" x="205.7" y="322">732</text>
+      <!-- Sucre 720 -> 9.5 -->
+      <text class="dep" x="180" y="357" text-anchor="end">Sucre</text>
+      <rect x="188" y="345" width="9.5" height="17" fill="var(--neutral)"/>
+      <text class="val" x="205.5" y="357">720</text>
+
+      <!-- legend -->
+      <rect x="188" y="400" width="11" height="11" fill="var(--accent)"/>
+      <text x="205" y="410">Zona de mayor afectación reportada</text>
+      <rect x="470" y="400" width="11" height="11" fill="var(--neutral)"/>
+      <text x="487" y="410">Nexo por verificar</text>
+    </svg>
+  </div>
+  <p>
+    Los departamentos restantes —Norte de Santander, Córdoba, Tolima, Huila, Nariño,
+    Cundinamarca y Casanare— suman <span class="mono">2.196</span> millones entre todos. El
+    valor de Bolívar corresponde casi por completo a dos contratos de acueducto en San Jacinto
+    cuyo nexo con el sismo no está acreditado en el objeto. Tolima y Nariño existen en este
+    rastreo casi solo gracias a SECOP&nbsp;I: cinco de sus seis contratos y seis de sus siete,
+    respectivamente.
+  </p>
+</section>
+
+<section>
+  <h2><span class="n">03</span> Hallazgos</h2>
+
+  <div class="finds">
+    <div class="find find--vacio">
+      <span class="mark">Vacío</span>
+      <div>
+        <h4>La Gobernación del Valle del Cauca no registra un solo contrato para el sismo, en ninguno de los dos sistemas</h4>
+        <p>
+          Declaró calamidad pública por seis meses el mismo 10 de agosto
+          (<span class="mono">Decreto 1.03.01-1070</span>) y ordenó adelantar la contratación
+          por el artículo 66 de la Ley 1523. Desde esa fecha firmó
+          <strong class="mono">1.937</strong> contratos en SECOP&nbsp;II, pero
+          <strong>ninguno</strong> menciona sismo, calamidad, damnificados, escombros ni
+          urgencia manifiesta, y <strong>ninguno</strong> usa esa causal:
+          <span class="mono">1.906</span> son prestación de servicios profesionales y apoyo
+          a la gestión. Su Secretaría de Gestión del Riesgo de Desastres suscribió 25
+          contratos el 14 de agosto, todos de planta temporal para «administración o
+          funcionamiento» y planes comunitarios, sin referencia al evento.
+        </p>
+        <p>
+          La revisión de SECOP&nbsp;I cierra la hipótesis de que estuviera reportando en el
+          sistema antiguo: allí la Gobernación tiene <strong>un único registro</strong> en la
+          ventana, y es un artefacto de calidad del dato —una concesión de la malla vial del
+          Valle y del Cauca con INVÍAS, cuantía cero y fecha de firma
+          <span class="mono">2097-12-24</span>—. El vacío es real.
+        </p>
+      </div>
+    </div>
+
+    <div class="find find--vacio">
+      <span class="mark">Vacío</span>
+      <div>
+        <h4>Dieciséis de los 42 municipios del Valle no tienen un solo contrato por el sismo, y entre ellos está Buenaventura</h4>
+        <p>
+          Los 42 entran en la revisión: el barrido es nacional y no filtra por entidad. Pero
+          el conteo depende de qué se cuente, porque el municipio como territorio no es lo
+          mismo que la alcaldía como entidad. <strong class="mono">21</strong> alcaldías
+          contrataron por el sismo. Si además se cuentan las demás entidades con sede en el
+          municipio —instituciones educativas, hospitales, empresas de servicios, personerías,
+          institutos de deporte— son <strong class="mono">26</strong> municipios con algún
+          registro, y <strong class="mono">16</strong> sin ninguno.
+        </p>
+        <p>
+          Cinco municipios aparecen <em>solo</em> por esa vía, sin que su alcaldía contratara:
+          <strong>Guadalajara de Buga</strong> a través de la I.E. San Vicente
+          (<span class="mono">RE-13-2026</span>, 8,98 millones en mantenimiento de sedes por
+          daños del sismo), <strong>Guacarí</strong> por la I.E. General Santander
+          (siete portátiles para el plan de contingencia), <strong>Riofrío</strong> por la
+          E.S.E. Hospital Kennedy (<span class="mono">OS-027-2026</span>, reparación de su
+          infraestructura), <strong>Versalles</strong> por su personería y
+          <strong>Yumbo</strong> por el instituto municipal del deporte. En Cali el patrón se
+          repite hacia abajo: cuatro colegios oficiales y el INTENALCO, este último con
+          <span class="mono">1.440</span> millones en obras e interventoría bajo urgencia
+          manifiesta propia (Resolución 255 del 12 de agosto).
+        </p>
+        <p>
+          El vacío que queda no es de cobertura: los dieciséis publican con normalidad.
+          <strong>Buenaventura</strong> firmó <span class="mono">351</span> contratos desde el
+          10 de agosto y <strong>ninguno</strong> menciona sismo, terremoto, calamidad,
+          urgencia manifiesta ni damnificados —y el distrito figura, en la nota de prensa que
+          la propia Gobernación citó en su decreto, entre los municipios con más víctimas—.
+          Igual <strong>Jamundí</strong> (<span class="mono">479</span> contratos, cero),
+          El Cerrito (<span class="mono">92</span>), Florida (<span class="mono">211</span>),
+          La Unión (<span class="mono">63</span>), Dagua (<span class="mono">60</span>),
+          Candelaria, Pradera, Vijes, Restrepo, Ginebra, El Dovio, Ansermanuevo, Obando,
+          Ulloa y Trujillo.
+        </p>
+      </div>
+    </div>
+
+    <div class="find find--dato">
+      <span class="mark">Cobertura</span>
+      <div>
+        <h4>El epicentro sí contrató, pero solo se ve en SECOP I</h4>
+        <p>
+          <strong>San José del Palmar</strong>, el municipio del epicentro, tiene tres
+          contratos por <span class="mono">177,5</span> millones que no existen en
+          SECOP&nbsp;II: <span class="mono">SJP-SAV-SU-001-2026</span> de combustible ACPM
+          para maquinaria en remoción de material,
+          <span class="mono">SJP-SAV-CV-001-2026</span> de materiales de construcción para
+          recuperación inicial de viviendas, y uno de servicios; los tres por urgencia
+          manifiesta, literal A. En el mismo caso están Pueblo Rico, Mistrató, El Cairo,
+          El Águila, Argelia, Aranzazu, Rovira y el Fondo de Vivienda de Puerto Tejada.
+          En total SECOP&nbsp;I suma <strong class="mono">42</strong> contratos por
+          <strong class="mono">5.800</strong> millones y 13 procesos que un rastreo limitado
+          a SECOP&nbsp;II habría dado por inexistentes.
+        </p>
+      </div>
+    </div>
+
+    <div class="find find--conc">
+      <span class="mark">Privado</span>
+      <div>
+        <h4>El segundo mayor gasto individual del rastreo no es público: lo hizo una cámara de comercio</h4>
+        <p>
+          La <strong>Cámara de Comercio de Pereira</strong> registró 35 erogaciones por
+          <span class="mono">4.083</span> millones, de las cuales
+          <strong class="mono">3.499</strong> millones son un solo contrato
+          —<span class="mono">PUB-076-2026</span> del 25 de agosto, con Julián Castaño
+          Londoño— para reparar el centro de convenciones <strong>Expofuturo</strong> por las
+          afectaciones del evento sísmico. El resto son apoyos a comerciantes afectados:
+          paneles para resguardar mercancía, alimentación, logística. Las cámaras de Tuluá,
+          Palmira, Dosquebradas, Manizales, Santa Rosa de Cabal y del Cauca hicieron lo mismo
+          a menor escala. Es dinero privado bajo régimen especial, no contratación estatal,
+          por eso va en hoja aparte; pero dimensiona el esfuerzo del sector empresarial y es
+          trazable.
+        </p>
+      </div>
+    </div>
+
+    <div class="find find--conc">
+      <span class="mark">Concentración</span>
+      <div>
+        <h4>En Cali, dos convenios idénticos a una misma fundación explican el 68 % del gasto</h4>
+        <p>
+          De <span class="mono">1.486</span> contratos del Distrito firmados desde el 10 de
+          agosto, solo cuatro mencionan la emergencia y tres tienen nexo con el sismo, por
+          <span class="mono">11.868</span> millones. De ellos,
+          <strong class="mono">8.100</strong> millones están en dos convenios
+          —<span class="mono">4163.001.27.1.4-2026</span> del 31 de agosto y
+          <span class="mono">4163.001.27.1.5-2026</span> del 1.º de septiembre— con
+          <strong>Fundación Prosperidad y Futuro del Pacífico</strong>
+          (<span class="mono">NIT 901894980</span>): mismo objeto textual, mismo valor de
+          <span class="mono">4.050</span> millones cada uno, dos días consecutivos, para
+          «soporte logístico de la respuesta» y censo de damnificados. Es el mayor
+          contratista del rastreo y merece revisión del expediente. El Distrito no publica en
+          SECOP&nbsp;I, así que estas son todas sus cifras.
+        </p>
+      </div>
+    </div>
+
+    <div class="find find--vacio">
+      <span class="mark">Vacío</span>
+      <div>
+        <h4>La respuesta nacional no aparece: cero registros de la UNGRD y del FNGRD</h4>
+        <p>
+          Ninguna de las dos entidades deja un solo registro atribuible al sismo. La UNGRD
+          firmó un único contrato desde el 10 de agosto —<span class="mono">UNGRD-069-2026</span>,
+          suscrito el mismo 10 de agosto por <span class="mono">37,9</span> millones— y es de
+          servicios profesionales para contabilidad de regalías, ajeno al evento. El Fondo
+          Nacional de Gestión del Riesgo de Desastres publicó <span class="mono">299</span>
+          procesos en el período y ninguno cita este sismo: el único con vocabulario sísmico
+          —<span class="mono">9677-PPAL001-1485-2025</span>, exploración geotécnica en
+          Paratebueno y Medina— se funda en el Decreto 131 del 9 de junio de 2025, es decir, en
+          la calamidad anterior de Cundinamarca.
+        </p>
+        <p>
+          La razón estructural es que el FNGRD ejecuta por encargo fiduciario bajo régimen de
+          derecho privado: en toda la historia de SECOP&nbsp;II registra
+          <strong class="mono">14</strong> contratos electrónicos frente a
+          <strong class="mono">1.889</strong> procesos. Su gasto real por el sismo no está en
+          estos datos y hay que pedirlo a la UNGRD o a la fiduciaria.
+        </p>
+      </div>
+    </div>
+
+    <div class="find find--dato">
+      <span class="mark">Patrón</span>
+      <div>
+        <h4>Casi todo se contrató directamente y por urgencia manifiesta</h4>
+        <p>
+          <strong class="mono">323</strong> de los 329 contratos se celebraron por
+          contratación directa, y <strong class="mono">235</strong> invocan expresamente la
+          urgencia manifiesta del literal a) del numeral 4 del artículo 2.º de la Ley 1150 de
+          2007. Por valor, el gasto se concentra en suministros
+          (<span class="mono">24.450</span> millones entre las dos etiquetas que usan los
+          sistemas) y obra (<span class="mono">18.115</span> millones en apenas 17 contratos),
+          mientras que 168 contratos de prestación de servicios suman
+          <span class="mono">19.212</span> millones. Los 82 clasificados como «Otro»
+          —convenios y órdenes— pesan <span class="mono">28.501</span> millones, la franja más
+          grande y la menos tipificada.
+        </p>
+      </div>
+    </div>
+
+    <div class="find find--dato">
+      <span class="mark">Patrón</span>
+      <div>
+        <h4>El sector educativo y hospitalario es el frente de reconstrucción abierto</h4>
+        <p>
+          Los procesos aún sin adjudicar de mayor cuantía son del Hospital Universitario del
+          Valle —tres por <span class="mono">10.200</span> millones para cubiertas, piso 3,
+          urgencias, central de mezclas y áreas de alto riesgo obstétrico—, y de
+          universidades: Institución Universitaria de Roldanillo
+          (<span class="mono">4.285</span> millones ya contratados para reconstruir su planta
+          física, más una gerencia de recursos cancelada), UNIAJC
+          (<span class="mono">6.977</span> millones en equipos de cómputo), Universidad de
+          Caldas y UNIQUINDÍO. La <strong>Escuela Nacional del Deporte</strong>, que aparece
+          solo en SECOP&nbsp;I, contrató <span class="mono">1.061</span> millones con SM PRO
+          S.A.S. para recuperar su infraestructura física. EMCALI abrió el 3 de septiembre un
+          proceso de <span class="mono">1.240</span> millones para cuadrillas de alumbrado
+          público.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">04</span> Los contratos de mayor valor</h2>
+  <p class="lede">
+    Once primeros por valor entre los 329 con nexo. El detalle completo —objeto íntegro,
+    número de proceso, fechas de inicio y terminación, documento del contratista y enlace al
+    expediente— está en el libro de Excel adjunto al proyecto, que además marca en cada fila
+    de qué sistema proviene.
+  </p>
+  <div class="tablebox">
+    <table>
+      <caption>Contratos firmados entre el 10 de agosto y el 7 de septiembre de 2026. Valores en pesos. Origen SECOP&nbsp;II salvo indicación.</caption>
+      <thead>
+        <tr>
+          <th>Nivel</th><th>Entidad contratante</th><th>N.º contrato</th>
+          <th>Objeto</th><th>Contratista</th><th>Firma</th><th>Valor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="pill pill--ok">Confirm.</span></td>
+          <td class="ent">UNIAJC · Inst. Univ. Antonio José Camacho <span class="mono">(Cali)</span></td>
+          <td class="ref">DJC-CD-08.03.02-386-2026</td>
+          <td class="obj">Equipos de cómputo, estaciones de trabajo, tabletas y monitores para recuperar la capacidad tecnológica comprometida por el sismo del 10 de agosto.</td>
+          <td class="ent">Tech Transit S.A.S.</td>
+          <td class="ref">27 ago</td>
+          <td class="num">6.976.838.150</td>
+        </tr>
+        <tr>
+          <td><span class="pill pill--ok">Confirm.</span></td>
+          <td class="ent">Municipio de Pereira</td>
+          <td class="ref">5983-2026</td>
+          <td class="obj">Raciones alimentarias preparadas para asistencia humanitaria de la población damnificada y afectada por el sismo, en Pereira.</td>
+          <td class="ent">Construyamos Colombia</td>
+          <td class="ref">4 sep</td>
+          <td class="num">5.000.000.000</td>
+        </tr>
+        <tr>
+          <td><span class="pill pill--ok">Confirm.</span></td>
+          <td class="ent">Gobernación de Risaralda</td>
+          <td class="ref">CO1.PCCNTR.9838267</td>
+          <td class="obj">Maquinaria amarilla y carrotanque para atención de emergencias por la Secretaría de Infraestructura, en el marco de la calamidad y urgencia manifiesta del 10 de agosto.</td>
+          <td class="ent">Grupo Empresarial del Oriente S.A.S.</td>
+          <td class="ref">21 ago</td>
+          <td class="num">4.499.971.004</td>
+        </tr>
+        <tr>
+          <td><span class="pill pill--ok">Confirm.</span></td>
+          <td class="ent">Inst. Universitaria de Roldanillo · UNINTEP</td>
+          <td class="ref">CO-001-2026</td>
+          <td class="obj">Reconstrucción de la infraestructura física de UNINTEP por los daños del sismo, bajo la urgencia manifiesta declarada en Resolución 2920 del 12 de agosto.</td>
+          <td class="ent">Obras Civiles de Occidente S.A.S.</td>
+          <td class="ref">21 ago</td>
+          <td class="num">4.284.974.783</td>
+        </tr>
+        <tr>
+          <td><span class="pill pill--warn">Probable</span></td>
+          <td class="ent">Departamento de Antioquia</td>
+          <td class="ref">4600019293</td>
+          <td class="obj">Administración de recursos para sostenimiento y mantenimiento de maquinaria amarilla y alquiler de equipos en los 13 municipios de la calamidad pública departamental.</td>
+          <td class="ent">Renting de Antioquia</td>
+          <td class="ref">25 ago</td>
+          <td class="num">4.511.288.986</td>
+        </tr>
+        <tr>
+          <td><span class="pill pill--warn">Probable</span></td>
+          <td class="ent">Santiago de Cali · Secretaría de Gestión del Riesgo</td>
+          <td class="ref">4163.001.27.1.4-2026</td>
+          <td class="obj">Soporte logístico de la respuesta a la calamidad pública y procesos de censo y caracterización de la población damnificada del Distrito.</td>
+          <td class="ent">Fundación Prosperidad y Futuro del Pacífico</td>
+          <td class="ref">31 ago</td>
+          <td class="num">4.050.000.000</td>
+        </tr>
+        <tr>
+          <td><span class="pill pill--warn">Probable</span></td>
+          <td class="ent">Santiago de Cali · Secretaría de Gestión del Riesgo</td>
+          <td class="ref">4163.001.27.1.5-2026</td>
+          <td class="obj">Mismo objeto textual y mismo valor que el anterior, suscrito el día siguiente.</td>
+          <td class="ent">Fundación Prosperidad y Futuro del Pacífico</td>
+          <td class="ref">1 sep</td>
+          <td class="num">4.050.000.000</td>
+        </tr>
+        <tr>
+          <td><span class="pill pill--ok">Confirm.</span></td>
+          <td class="ent">Santiago de Cali · UAE de Servicios Públicos</td>
+          <td class="ref">4182.010.26.1.653-2026</td>
+          <td class="obj">Cargue y transporte a disposición final de residuos de construcción y demolición (RCD) en el marco de la urgencia manifiesta, por los hechos del 10 de agosto.</td>
+          <td class="ent">Empresa Regional de Servicio Público de Aseo de Candelaria</td>
+          <td class="ref">17 ago</td>
+          <td class="num">3.759.980.000</td>
+        </tr>
+        <tr>
+          <td><span class="pill pill--ok">Confirm.</span></td>
+          <td class="ent">Gobernación de Caldas</td>
+          <td class="ref">CO1.PCCNTR.9854986</td>
+          <td class="obj">Materiales de construcción, herramientas e insumos de ferretería para atención, recuperación y adecuación de viviendas, por la calamidad del Decreto Departamental 393 del 10 de agosto.</td>
+          <td class="ent">TDEPE S.A.S.</td>
+          <td class="ref">25 ago</td>
+          <td class="num">3.500.000.000</td>
+        </tr>
+        <tr>
+          <td><span class="pill pill--ok">Confirm.</span></td>
+          <td class="ent">Municipio de Manizales</td>
+          <td class="ref">2608201039</td>
+          <td class="obj">Demolición controlada de edificaciones inseguras o en riesgo de colapso por el evento sísmico, con apuntalamiento y disposición final de RCD.</td>
+          <td class="ent">Reciclados Industriales de Colombia S.A.S.</td>
+          <td class="ref">20 ago</td>
+          <td class="num">2.000.000.000</td>
+        </tr>
+        <tr>
+          <td><span class="pill pill--ok">Confirm.</span></td>
+          <td class="ent">Escuela Nacional del Deporte <span class="mono">(SECOP I)</span></td>
+          <td class="ref">120.14.06.001.2026</td>
+          <td class="obj">Obras de recuperación y restablecimiento de los espacios y la infraestructura física de la institución, afectada por el evento sísmico.</td>
+          <td class="ent">SM PRO S.A.S.</td>
+          <td class="ref">2 sep</td>
+          <td class="num">1.061.129.603</td>
+        </tr>
+        <tr>
+          <td><span class="pill pill--neu">Verificar</span></td>
+          <td class="ent">Gobernación de Bolívar</td>
+          <td class="ref">4400 DE 2026</td>
+          <td class="obj">Sistema de respaldo estratégico para el acueducto de la cabecera de San Jacinto. Urgencia manifiesta sin mención del sismo: nexo no acreditado.</td>
+          <td class="ent">Hernández Group Ingeniería S.A.S.</td>
+          <td class="ref">27 ago</td>
+          <td class="num">7.054.484.345</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">05</span> Procesos todavía abiertos</h2>
+  <p class="lede">
+    Setenta y cinco procesos siguen sin selección ni contrato, por
+    <span class="mono">20.061</span> millones de valor base. Ninguno de ellos tiene aún
+    contrato en la base, así que su valor no repite el de la sección anterior. Estos son los
+    de mayor cuantía.
+  </p>
+  <div class="tablebox">
+    <table>
+      <caption>Procesos en estado publicado, abierto o en evaluación al 8 de septiembre de 2026.</caption>
+      <thead>
+        <tr><th>Entidad</th><th>N.º proceso</th><th>Objeto</th><th>Estado</th><th>Publicación</th><th>Valor base</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="ent">HUV · Hospital Universitario del Valle Evaristo García</td>
+          <td class="ref">C26-125</td>
+          <td class="obj">Reparación y rehabilitación de cubiertas, bajantes y goteras del piso 3, urgencias y central de mezclas.</td>
+          <td>Publicado</td><td class="ref">1 sep</td><td class="num">4.000.000.000</td>
+        </tr>
+        <tr>
+          <td class="ent">HUV · Hospital Universitario del Valle</td>
+          <td class="ref">C26-126</td>
+          <td class="obj">Reparación de la infraestructura de alto riesgo obstétrico, ginecoobstetricia y áreas de influencia de los pisos 6 y 2.</td>
+          <td>Publicado</td><td class="ref">1 sep</td><td class="num">3.200.000.000</td>
+        </tr>
+        <tr>
+          <td class="ent">HUV · Hospital Universitario del Valle</td>
+          <td class="ref">C26-128</td>
+          <td class="obj">Segundo lote de reparación de cubiertas, bajantes y goteras del piso 3, urgencias y central de mezclas.</td>
+          <td>Publicado</td><td class="ref">1 sep</td><td class="num">3.000.000.000</td>
+        </tr>
+        <tr>
+          <td class="ent">Empresa de Vivienda de Antioquia · VIVA</td>
+          <td class="ref">CTO-008-2026_IP-025</td>
+          <td class="obj">Obra para mejoramientos de vivienda dirigidos a familias afectadas o damnificadas, en el marco de la calamidad pública y la urgencia manifiesta.</td>
+          <td>Publicado</td><td class="ref">13 ago</td><td class="num">1.504.319.875</td>
+        </tr>
+        <tr>
+          <td class="ent">Empresas Municipales de Cali · EMCALI</td>
+          <td class="ref">500-OS-2197-2026</td>
+          <td class="obj">Cuadrillas para atención, reparación y restablecimiento del Sistema de Alumbrado Público por las afectaciones del sismo del 10 de agosto.</td>
+          <td>Publicado</td><td class="ref">3 sep</td><td class="num">1.240.372.309</td>
+        </tr>
+        <tr>
+          <td class="ent">Universidad de Caldas</td>
+          <td class="ref">SG 054-2026</td>
+          <td class="obj">Suministro para obras de reparación de afectaciones por movimientos telúricos en el campus Sancancio y el campus central.</td>
+          <td>Publicado</td><td class="ref">18 ago</td><td class="num">800.000.000</td>
+        </tr>
+        <tr>
+          <td class="ent">Universidad de Caldas</td>
+          <td class="ref">SG 57-2026</td>
+          <td class="obj">Reparación del edificio de laboratorios Marco Tulio Jaramillo Salazar por afectaciones de movimientos telúricos.</td>
+          <td>Publicado</td><td class="ref">20 ago</td><td class="num">500.000.000</td>
+        </tr>
+        <tr>
+          <td class="ent">UNIQUINDÍO</td>
+          <td class="ref">CTO-047-2026</td>
+          <td class="obj">Obras a monto agotable en las edificaciones de la zona norte del campus.</td>
+          <td>Publicado</td><td class="ref">24 ago</td><td class="num">492.552.000</td>
+        </tr>
+        <tr>
+          <td class="ent">UNIQUINDÍO</td>
+          <td class="ref">CTO-049-2026</td>
+          <td class="obj">Obras a monto agotable en la zona sur del campus y el edificio de Bellas Artes.</td>
+          <td>Publicado</td><td class="ref">28 ago</td><td class="num">492.552.000</td>
+        </tr>
+        <tr>
+          <td class="ent">E.S.E. Hospital La Misericordia de Calarcá</td>
+          <td class="ref">2026-700</td>
+          <td class="obj">Mantenimiento preventivo, correctivo y de infraestructura en situación de emergencia por los daños del evento sísmico.</td>
+          <td>Publicado</td><td class="ref">2 sep</td><td class="num">73.006.814</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">06</span> Marco normativo del rastreo</h2>
+  <p class="lede">
+    Los cuatro decretos de la carpeta fijaron el perímetro. Los contratos citan además otros
+    actos que no están en el expediente y que conviene incorporar para cerrar la trazabilidad.
+  </p>
+  <div class="decs">
+    <div class="dec">
+      <span class="who">Presidencia de la República</span>
+      <span class="what">
+        <span class="mono">Decreto 1261</span> del 19 de agosto de 2026. Estado de Emergencia
+        Económica, Social y Ecológica por grave calamidad pública, por 30 días, en Antioquia,
+        Caldas, Cauca, Chocó, Quindío, Cundinamarca, Risaralda, Huila, Valle del Cauca,
+        Tolima, Putumayo, Norte de Santander, Bolívar, Nariño y Sucre. Estos quince
+        departamentos son el filtro territorial del rastreo.
+      </span>
+    </div>
+    <div class="dec">
+      <span class="who">Gobernación del Valle del Cauca</span>
+      <span class="what">
+        <span class="mono">Decreto 1.03.01-1070</span> del 10 de agosto de 2026. Calamidad
+        pública departamental por seis meses; ordena contratar conforme al artículo 66 de la
+        Ley 1523 y remitir los contratos a la Contraloría Departamental.
+      </span>
+    </div>
+    <div class="dec">
+      <span class="who">Distrito de Santiago de Cali</span>
+      <span class="what">
+        <span class="mono">Decreto 4112.010.20.0963</span> (calamidad pública) y
+        <span class="mono">4112.010.20.0964</span> (urgencia manifiesta), ambos del 10 de
+        agosto de 2026. Habilitan contratación directa a los ordenadores del gasto de la
+        administración central; las entidades descentralizadas debían declarar su propia
+        urgencia manifiesta.
+      </span>
+    </div>
+    <div class="dec">
+      <span class="who">Citados por las entidades</span>
+      <span class="what">
+        <span class="mono">Decreto Presidencial 1171</span> del 11 de agosto de 2026, que
+        declara situación de desastre de carácter nacional <span class="flag">falta en la carpeta</span>
+        <br>Caldas <span class="mono">Decreto Departamental 393</span> del 10 de agosto ·
+        Manizales <span class="mono">Decreto 003 de 2026</span> ·
+        Dosquebradas <span class="mono">Decretos 309 y 310</span> del 10 de agosto ·
+        Montenegro <span class="mono">Decreto 048 de 2026</span> ·
+        Antioquia <span class="mono">Decreto 2026070000460</span> ·
+        UNINTEP <span class="mono">Resolución 2920</span> del 12 de agosto ·
+        decreto de calamidad y urgencia manifiesta de Risaralda del 10 de agosto.
+      </span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="n">07</span> Qué no cubre este rastreo</h2>
+  <div class="caveats">
+    <ul>
+      <li>
+        <strong>Rezago de publicación.</strong> El corte es el 8 de septiembre de 2026 y la
+        última actualización del conjunto de datos es del 5 de septiembre. La urgencia
+        manifiesta permite contratar antes de publicar, así que el universo crecerá; conviene
+        repetir la consulta.
+      </li>
+      <li>
+        <strong>El FNGRD no publica contratos aquí.</strong> El Fondo Nacional ejecuta por
+        encargo fiduciario bajo régimen de derecho privado. Su gasto real por el sismo debe
+        pedirse a la UNGRD o a la fiduciaria, no a SECOP&nbsp;II.
+      </li>
+      <li>
+        <strong>Régimen especial y empresas de servicios públicos.</strong> EMCALI, las
+        E.S.E., universidades y empresas industriales y comerciales publican de forma
+        irregular y a menudo solo como «proceso», sin contrato electrónico asociado.
+      </li>
+      <li>
+        <strong>Calidad del dato en SECOP&nbsp;I.</strong> El sistema antiguo arrastra fechas
+        de firma imposibles —se encontraron registros fechados en 2097 y 2103— y nombres de
+        entidad con el departamento incrustado y codificación dañada. Toda fila con fecha
+        fuera de 2026 quedó fuera del conteo; sin ese filtro, el rastreo habría sumado
+        contratos de los años noventa.
+      </li>
+      <li>
+        <strong>Tres contratos figuran con valor cero</strong> y varios convenios
+        interadministrativos se registran sin cuantía, de modo que el valor total es un piso,
+        no un techo.
+      </li>
+      <li>
+        <strong>Contratos y procesos no son universos aditivos.</strong> El 71&nbsp;% de los
+        procesos del rastreo (268 de 376) es el trámite de un contrato que ya está contado.
+        Cualquier cifra que sume las dos hojas del Excel infla el resultado en unos
+        <span class="mono">78.296</span> millones. La columna <span class="mono">YaContratado</span>
+        de la hoja PROCESOS marca cuáles.
+      </li>
+      <li>
+        <strong>El nombre de la entidad no sirve para atribuir municipio.</strong> Los dos
+        sistemas usan convenciones distintas —<span class="mono">MUNICIPIO DE SEVILLA</span>,
+        <span class="mono">ALCALDIA MUNICIPAL DE ANDALUCIA</span>,
+        <span class="mono">VALLE DEL CAUCA - ALCALDÍA MUNICIPIO DE EL CAIRO</span>— y muchas
+        entidades municipales no llevan el nombre del municipio (una I.E., un hospital, EMCALI,
+        EDRU, INTENALCO). El campo <span class="mono">ciudad</span> tampoco basta: 1.293 filas
+        del Valle lo traen en «No Definido», entre ellas todas las de Zarzal y La Victoria.
+        Hay que cruzar entidad, ciudad y el texto del objeto. Buscar por cadena también
+        confunde municipios: «BUGA» coincide con Bugalagrande.
+      </li>
+      <li>
+        <strong>El nivel «por verificar» exige leer el expediente.</strong> Son urgencias
+        manifiestas posteriores al sismo en departamentos cubiertos cuyo objeto no lo
+        menciona; a la vista de su contenido —acueductos, primera infancia, escenarios
+        deportivos— la mayoría probablemente responde a otras causas y no debería sumarse sin
+        confirmación.
+      </li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <span>Fuente: datos.gov.co · SECOP II (jbjy-vk9h, p6dx-8zbt) y SECOP I (f789-7hwg)</span>
+  <span>Corte 8 sep 2026 · dato actualizado al 5 sep 2026</span>
+</footer>
+
+</div>
+
+</body>
+</html>
