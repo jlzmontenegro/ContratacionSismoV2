@@ -178,7 +178,9 @@
 
   /* ---------- chart ---------- */
   .chartbox{margin-top:24px; overflow-x:auto}
-  .chart{min-width:560px; width:100%; height:auto; display:block}
+  .chartbox::after{content:"Desliza para ver el gráfico completo"; display:none; font-family:"Archivo",sans-serif; font-size:11.5px; color:var(--muted); padding-top:8px}
+  @media (max-width:620px){ .chartbox::after{display:block} }
+  .chart{min-width:520px; width:100%; height:auto; display:block}
   .chart text{font-family:"IBM Plex Mono",monospace; font-size:11px; fill:var(--muted)}
   .chart text.dep{font-family:"Archivo",sans-serif; font-size:12px; fill:var(--ink-2)}
   .chart text.val{fill:var(--ink); font-variant-numeric:tabular-nums}

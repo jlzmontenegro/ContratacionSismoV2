@@ -179,8 +179,10 @@
   .two{display:grid; grid-template-columns:1fr 1fr; gap:18px}
 
   /* ---------- gráficos ---------- */
+  /* los gráficos se redibujan al ancho real del contenedor (ver dibujarGraficos),
+     así que el viewBox coincide con los píxeles y el texto no se encoge */
   .chartwrap{overflow-x:auto}
-  svg.ch{display:block; width:100%; height:auto; min-width:300px}
+  svg.ch{display:block; width:100%; height:auto}
   svg.ch text{font-family:"IBM Plex Mono",monospace; font-size:10.5px; fill:var(--muted)}
   svg.ch text.cat{font-family:"Archivo",sans-serif; font-size:11.5px; fill:var(--ink-2)}
   svg.ch text.val{fill:var(--ink); font-variant-numeric:tabular-nums}
@@ -656,17 +658,30 @@ function ticks(max){
   if (out[out.length-1] < max) out.push(out[out.length-1]+step);
   return out;
 }
+// ancho útil del contenedor: el viewBox se iguala a él para que 10,5 unidades
+// de texto sean 10,5 píxeles reales en cualquier pantalla
+function anchoDe(el, min, max){
+  const w = (el.parentElement && el.parentElement.clientWidth) || max;
+  return Math.round(Math.max(min, Math.min(max, w)));
+}
 function barrasH(svg, caption, datos, campoFiltro){
   const el = document.getElementById(svg);
   document.getElementById(caption).textContent = datos.length
     ? `Diez primeros por valor · toca una barra para filtrar` : 'Sin datos en la selección';
   if (!datos.length){ el.innerHTML=''; el.setAttribute('viewBox','0 0 600 40'); return; }
-  const W=600, LM=138, RM=74, rowH=26, gap=6, top=26, bot=8;
+  const W = anchoDe(el, 268, 640);
+  const angosto = W < 430;
+  const LM = Math.round(Math.max(74, Math.min(138, W * 0.30)));
+  const RM = Math.round(Math.max(52, Math.min(74, W * 0.15)));
+  const rowH = angosto ? 24 : 26, gap = 6, top = 26, bot = 8;
+  const maxCar = Math.max(6, Math.floor((LM - 10) / 6.1));
   const H = top + datos.length*(rowH) + bot;
   const max = Math.max(...datos.map(d=>d.v)) || 1;
   const iw = W - LM - RM;
-  const tk = ticks(max);
-  const sc = v => (v/tk[tk.length-1]) * iw;
+  const tk0 = ticks(max);
+  // en pantalla angosta se dejan menos marcas para que las etiquetas no se pisen
+  const tk = (angosto && tk0.length > 3) ? tk0.filter((_,i)=> i % 2 === 0 || i === tk0.length-1) : tk0;
+  const sc = v => (v/tk0[tk0.length-1]) * iw;
   let g = '';
   tk.forEach(t=>{
     const x = LM + sc(t);
@@ -677,7 +692,7 @@ function barrasH(svg, caption, datos, campoFiltro){
   const col = cssv('--accent');
   datos.forEach((d,i)=>{
     const y = top + i*rowH, bh = rowH-gap, w = sc(d.v);
-    const nm = d.k.length>19 ? d.k.slice(0,18)+'…' : d.k;
+    const nm = d.k.length > maxCar ? d.k.slice(0, maxCar-1)+'…' : d.k;
     const on = S[campoFiltro].has(d.k);
     g += `<text class="cat" x="${LM-9}" y="${y+bh/2+4}" text-anchor="end"${on?' font-weight="600"':''}>${esc(nm)}</text>`;
     g += `<path class="bar" d="${barPath(LM,y,w,bh,4)}" fill="${col}"${on?'':' opacity="0.9"'}/>`;
@@ -698,7 +713,7 @@ function barraNivel(rows){
   document.getElementById('cs-nivel').textContent = tot
     ? `${fmt(tot)} registros · el ancho de cada segmento es su participación`
     : 'Sin datos en la selección';
-  const W=1000, H=54, y=6, bh=30, GAP=2;
+  const W = anchoDe(el, 268, 1000), H=54, y=6, bh=30, GAP=2;
   let g='', x=0;
   if (tot){
     cnt.forEach((n,i)=>{
@@ -707,7 +722,7 @@ function barraNivel(rows){
       const draw = Math.max(2, w - GAP);
       g += `<rect class="bar" x="${x.toFixed(1)}" y="${y}" width="${draw.toFixed(1)}" height="${bh}" rx="2"
         fill="${cssv(NIVC[i])}"/>`;
-      if (draw > 68) g += `<text x="${(x+draw/2).toFixed(1)}" y="${y+bh/2+4}" text-anchor="middle" fill="#fff" font-family="IBM Plex Mono" font-size="11.5">${fmt(n)}</text>`;
+      if (draw > 44) g += `<text x="${(x+draw/2).toFixed(1)}" y="${y+bh/2+4}" text-anchor="middle" fill="#fff" font-family="IBM Plex Mono" font-size="11.5">${fmt(n)}</text>`;
       g += `<rect class="hit" x="${x.toFixed(1)}" y="${y}" width="${draw.toFixed(1)}" height="${bh}"
         data-bar="k" data-v="${i}" data-tt="${NIV[i]} — ${fmt(n)} registros (${Math.round(n/tot*100)}%)"><title>${NIV[i]}: ${fmt(n)}</title></rect>`;
       x += w;
@@ -737,12 +752,15 @@ function barrasSemana(rows){
     ? `Semanas del ${keys[0]} al ${keys[keys.length-1]} · por fecha de firma o publicación`
     : 'Sin datos en la selección';
   if (!keys.length){ el.innerHTML=''; el.setAttribute('viewBox','0 0 600 40'); return; }
-  const W=1000, H=180, LM=44, RM=14, TM=18, BM=42;
+  const W = anchoDe(el, 268, 1000);
+  const angosto = W < 430;
+  const H = angosto ? 158 : 180, LM = angosto ? 34 : 44, RM = 14, TM = 18, BM = 42;
   const max = Math.max(...m.values());
   const iw = W-LM-RM, ih = H-TM-BM;
-  const bw = Math.min(70, iw/keys.length - 8);
-  const tk = ticks(max);
-  const top = tk[tk.length-1];
+  const bw = Math.min(70, Math.max(10, iw/keys.length - 8));
+  const tk0 = ticks(max);
+  const tk = (angosto && tk0.length > 3) ? tk0.filter((_,i)=> i % 2 === 0 || i === tk0.length-1) : tk0;
+  const top = tk0[tk0.length-1];
   let g='';
   tk.forEach(t=>{
     const y = TM + ih - (t/top)*ih;
@@ -759,7 +777,9 @@ function barrasSemana(rows){
     g += `<path class="bar" fill="${col}" d="M${x} ${TM+ih}v${-(h-rr)}a${rr} ${rr} 0 0 1 ${rr} ${-rr}h${bw-2*rr}a${rr} ${rr} 0 0 1 ${rr} ${rr}v${h-rr}z"/>`;
     g += `<text class="val" x="${cx.toFixed(1)}" y="${(y-6).toFixed(1)}" text-anchor="middle">${n}</text>`;
     const d = new Date(k+'T00:00:00');
-    g += `<text x="${cx.toFixed(1)}" y="${TM+ih+17}" text-anchor="middle">${d.getDate()} ${['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'][d.getMonth()]}</text>`;
+    const mes = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'][d.getMonth()];
+    const etiqueta = angosto ? `${d.getDate()}/${d.getMonth()+1}` : `${d.getDate()} ${mes}`;
+    g += `<text x="${cx.toFixed(1)}" y="${TM+ih+17}" text-anchor="middle">${etiqueta}</text>`;
     g += `<rect class="hit" x="${(cx-iw/keys.length/2).toFixed(1)}" y="${TM}" width="${(iw/keys.length).toFixed(1)}" height="${ih}"
       data-tt="Semana del ${k} — ${fmt(n)} registro${n===1?'':'s'}"><title>Semana del ${k}: ${n}</title></rect>`;
   });
@@ -891,12 +911,18 @@ function render(reiniciarPagina){
   renderActive();
   const n = SETKEYS.reduce((a,k)=>a+S[k].size,0) + (S.q?1:0) + (S.f1||S.f2?1:0) + (S.vmin!==''||S.vmax!==''?1:0);
   document.getElementById('nact').textContent = n ? `· ${n} activo${n===1?'':'s'}` : '';
+  dibujarGraficos(rows);
+  visibles = renderTable(rows);
+}
+function dibujarGraficos(rows){
   barraNivel(rows);
   barrasH('ch-depto','cs-depto', agrupar(rows,'d'), 'd');
   barrasH('ch-muni','cs-muni', agrupar(rows.filter(r=>r.c && r.c!=='Sin dato'),'c'), 'c');
   barrasSemana(rows);
-  visibles = renderTable(rows);
 }
+// al cambiar el ancho hay que rehacer los gráficos, no escalarlos
+let rz;
+addEventListener('resize', ()=>{ clearTimeout(rz); rz = setTimeout(()=>dibujarGraficos(filtrar(null)), 180); });
 
 // ---------- eventos ----------
 function toggle(campo, valor){
