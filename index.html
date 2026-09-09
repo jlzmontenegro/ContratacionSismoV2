@@ -229,6 +229,7 @@
   .p0{background:var(--t0-soft); color:var(--t0)} .p1{background:var(--t1-soft); color:var(--t1)}
   .p2{background:var(--t2-soft); color:var(--t2)} .p3{background:var(--t3-soft); color:var(--t3)}
   .src{display:inline-block; padding:1px 5px; border-radius:2px; font-size:10px; font-family:"IBM Plex Mono",monospace; background:var(--surface-3); color:var(--ink-2)}
+  .movilnota{display:none; font-size:11.5px; color:var(--muted); margin:0 0 10px; line-height:1.4}
   .nores{padding:44px 20px; text-align:center; color:var(--muted); font-size:13px}
   .nores b{display:block; font-size:15px; color:var(--ink); margin-bottom:6px; font-weight:600}
 
@@ -296,14 +297,20 @@
     }
     tbody tr:hover{background:var(--surface)}
     tbody td{
-      display:grid; grid-template-columns:112px minmax(0,1fr); gap:10px;
-      padding:4px 0; border-bottom:none; align-items:baseline;
+      display:grid; grid-template-columns:96px minmax(0,1fr); gap:9px;
+      padding:3px 0; border-bottom:none; align-items:baseline; line-height:1.38;
     }
     tbody td::before{
       content:attr(data-l); font-size:10px; font-weight:600; letter-spacing:.05em;
       text-transform:uppercase; color:var(--muted); font-family:"Archivo",sans-serif;
     }
     tbody td:empty{display:none}
+    /* con 14 campos cada tarjeta pasaba de 700px: en móvil se muestran los 9 que
+       identifican el registro y se ocultan fuente, departamento, inicio, fin y estado,
+       que siguen disponibles en pantalla ancha y en «Copiar selección completa» */
+    tbody td:nth-child(3), tbody td:nth-child(5),
+    tbody td:nth-child(11), tbody td:nth-child(12), tbody td:nth-child(14){display:none}
+    .movilnota{display:block}
     td.ob,td.ent{max-width:none; min-width:0}
     td.r{text-align:left}
     .pager{justify-content:center}
@@ -326,7 +333,7 @@
     <h1>Contratación por el sismo del 10 de agosto de 2026</h1>
     <div class="sub">
       <span><b>SECOP I + SECOP II</b></span>
-      <span>760 registros</span>
+      <span id="nreg">— registros</span>
       <span>Corte 8 sep 2026</span>
       <span>Dato al 5 sep 2026</span>
       <span>Los filtros se combinan entre sí</span>
@@ -390,6 +397,9 @@
           </div>
           <button class="btn" id="copy" type="button" title="Copia todos los registros filtrados, no solo la página visible">Copiar selección completa</button>
         </div>
+        <p class="movilnota">En pantalla angosta cada registro se muestra como tarjeta con nueve
+          campos. Fuente, departamento, fechas de inicio y fin y estado quedan ocultos aquí:
+          están en pantalla ancha y en «Copiar selección completa».</p>
         <div class="tscroll">
           <table id="tbl">
             <thead><tr id="thr"></tr></thead>
@@ -433,6 +443,8 @@ const ETAPA = {
 };
 const etapaDe = r => r.t === 'C' ? 'C' : r.t === 'A' ? 'A' : (r.dup ? 'P1' : 'P0');
 DATA.forEach(r => { r.st = etapaDe(r); });
+document.getElementById('nreg').textContent =
+  DATA.length.toLocaleString('es-CO') + ' registros';
 
 const cssv = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 const fmt = n => (n||0).toLocaleString('es-CO',{maximumFractionDigits:0});
